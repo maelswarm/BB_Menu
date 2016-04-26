@@ -14,7 +14,6 @@
     if (self = [super initWithFrame:frame]) {
         
         self.userInteractionEnabled = YES;
-        
         self.imageViewArray = [NSMutableArray new];
         self.frame = frame;
         self.name = name;
@@ -24,11 +23,11 @@
         for (int i=0; i<size; i++) {
             UIImageView *tmpView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, i*self.frame.size.height/self.size, self.frame.size.width, self.frame.size.height/self.size)];
             tmpView.contentMode = UIViewContentModeScaleAspectFit;
-            tmpView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:i/self.size alpha:1.0f];
+            tmpView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
             [self addSubview:tmpView];
             [self.imageViewArray addObject:tmpView];
             [UIView animateWithDuration:1.0f animations:^{
-                tmpView.backgroundColor = [UIColor clearColor];
+                tmpView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
             }];
         }
     }
@@ -42,7 +41,7 @@
         if (location.y < (self.frame.size.height/self.size)*(i+1) && location.y >= (self.frame.size.height/self.size)*(i)) {
             UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
             [UIView animateWithDuration:1.0f animations:^{
-                imageView.backgroundColor = [UIColor redColor];
+                imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
             }];
         }
     }
@@ -62,7 +61,7 @@
             [self.delegate sliderReleased:self.name];
             UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
             [UIView animateWithDuration:1.0f animations:^{
-                imageView.backgroundColor = [UIColor clearColor];
+                imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
             }];
         }
     }
