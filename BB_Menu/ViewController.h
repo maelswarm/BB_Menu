@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BB_Menu.h"
+#import "BB_SliderV.h"
 
-@interface ViewController : UIViewController <menudelegate> {
+@interface ViewController : UIViewController <menudelegate, sliderdelegate> {
     
 }
 

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "BB_Menu.h"
+#import "BB_SliderV.h"
 
 @interface ViewController ()
 
@@ -20,6 +21,10 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     
+    BB_SliderV *slider = [[BB_SliderV alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 60.0f, 300.0f) andName:@"Slider1" andSize:6];
+    slider.delegate = self;
+    [self.view addSubview:slider];
+    
     BB_Menu *menu = [[BB_Menu alloc]initWithFrame:CGRectMake(0.0f, screenRect.size.height-200.0f, screenRect.size.width, 200.0f)];
     menu.delegate = self;
     [self.view addSubview:menu];
@@ -29,6 +34,10 @@
 
 - (void)buttonPressed:(NSString *)name {
     NSLog(@"Pressed: %@", name);
+}
+
+- (void)sliderReleased:(NSString *)name {
+    NSLog(@"Released: %@", name);
 }
 
 - (void)didReceiveMemoryWarning {
