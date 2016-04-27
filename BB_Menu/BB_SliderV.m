@@ -40,17 +40,31 @@
     for (int i=0; i<self.size; i++) {
         if (location.y < (self.frame.size.height/self.size)*(i+1) && location.y >= (self.frame.size.height/self.size)*(i)) {
             UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
-            [UIView animateWithDuration:1.0f animations:^{
+            [UIView animateWithDuration:0.5f animations:^{
                 imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
             }];
         }
     }
-    //    NSLog(@"Touch began: %f %f", location.x, location.y);
 }
 
 - (void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint location = [[touches anyObject] locationInView:self];
-    //NSLog(@"Touch moved: %f %f", location.x, location.y);
+    
+    for (int i=0; i<self.size; i++) {
+        if (location.x >= 0 && location.x <= self.frame.size.width && location.y <= (self.frame.size.height/self.size)*(i+1) && location.y >= (self.frame.size.height/self.size)*(i) && self.value != i) {
+            self.value = i;
+            [self.delegate sliderReleased:self.name];
+            UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
+            [UIView animateWithDuration:0.5f animations:^{
+                imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+            }];
+        } else {
+            UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
+            [UIView animateWithDuration:1.0f animations:^{
+                imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+            }];
+        }
+    }
 }
 
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -59,11 +73,11 @@
         if (location.y < (self.frame.size.height/self.size)*(i+1) && location.y >= (self.frame.size.height/self.size)*(i)) {
             self.value = i;
             [self.delegate sliderReleased:self.name];
-            UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
-            [UIView animateWithDuration:1.0f animations:^{
-                imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
-            }];
         }
+        UIImageView *imageView = (UIImageView *)[self.imageViewArray objectAtIndex:i];
+        [UIView animateWithDuration:1.0f animations:^{
+            imageView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+        }];
     }
 }
 

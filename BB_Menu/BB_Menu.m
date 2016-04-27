@@ -102,11 +102,11 @@
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint location = [[touches anyObject] locationInView:self];
     
-    if (location.x<self.screenRect.size.width*.2f) {
+    if (location.x<self.screenRect.size.width*.2f && location.y >= 150.0f && location.y <= self.frame.size.height) {
         [self.delegate buttonPressed:@"Button 1"];
-    } else if (location.x>self.screenRect.size.width*.2f && location.x<self.screenRect.size.width*.4f) {
+    } else if (location.x>self.screenRect.size.width*.2f && location.x<self.screenRect.size.width*.4f && location.y >= 150.0f && location.y <= self.frame.size.height) {
         [self.delegate buttonPressed:@"Button 2"];
-    } else if (location.x>self.screenRect.size.width*.4f && location.x<self.screenRect.size.width*.6f) {
+    } else if (location.x>self.screenRect.size.width*.4f && location.x<self.screenRect.size.width*.6f && location.y >= 150.0f && location.y <= self.frame.size.height) {
         [self.delegate buttonPressed:@"Button 3"];
         if (!self.button3open) {
             [UIView animateWithDuration:.5f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
@@ -140,9 +140,9 @@
             }];
         }
         
-    } else if (location.x>self.screenRect.size.width*.6f && location.x<self.screenRect.size.width*.8f) {
+    } else if (location.x>self.screenRect.size.width*.6f && location.x<self.screenRect.size.width*.8f && location.y >= 150.0f && location.y <= self.frame.size.height) {
         [self.delegate buttonPressed:@"Button 4"];
-    } else if (location.x>self.screenRect.size.width*.8f && location.x<self.screenRect.size.width) {
+    } else if (location.x>self.screenRect.size.width*.8f && location.x<self.screenRect.size.width && location.y >= 150.0f && location.y <= self.frame.size.height) {
         [self.delegate buttonPressed:@"Button 5"];
     }
 }
